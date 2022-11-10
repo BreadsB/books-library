@@ -24,9 +24,7 @@ public class BookContainerDaoTestSuite {
 //        BookContainer bookContainer = new BookContainer("free");
 //        Books book = booksDao.findAll().iterator().next();
 //        bookContainer.setBooks(book);
-//        System.out.println(bookContainer.getBooks());
 //
-//        System.out.println(bookContainer.getBooks());
 //        bookContainerDao.save(bookContainer);
 //        int id = bookContainer.getId();
 //

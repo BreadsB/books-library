@@ -53,7 +53,7 @@ public class Rents {
         this.returnDate = returnDate;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CUSTOMER_ID")
     public Customers getCustomers() {
         return customers;
@@ -63,7 +63,7 @@ public class Rents {
         this.customers = customers;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "BOOKCONTAINER_ID")
     public BookContainer getBookContainer() {
         return bookContainer;
