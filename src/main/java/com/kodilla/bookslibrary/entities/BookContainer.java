@@ -3,6 +3,7 @@ package com.kodilla.bookslibrary.entities;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "BOOKCONTAINER")

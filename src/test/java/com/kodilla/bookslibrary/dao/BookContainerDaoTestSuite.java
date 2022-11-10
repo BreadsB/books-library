@@ -19,26 +19,26 @@ public class BookContainerDaoTestSuite {
     @Autowired
     BooksDao booksDao;
 
-    @Test
-    void testCreateBookAndPlaceInContainer() {
-        BookContainer bookContainer = new BookContainer("free");
-        Books book = booksDao.findAll().iterator().next();
-        bookContainer.setBooks(book);
-        System.out.println(bookContainer.getBooks());
-
-        System.out.println(bookContainer.getBooks());
-        bookContainerDao.save(bookContainer);
-        int id = bookContainer.getId();
+//    @Test
+//    void testGetBookFromDatabaseAndPutInContainer() {
+//        BookContainer bookContainer = new BookContainer("free");
+//        Books book = booksDao.findAll().iterator().next();
+//        bookContainer.setBooks(book);
+//        System.out.println(bookContainer.getBooks());
 //
-        Assertions.assertNotEquals(0, id);
-
-        bookContainerDao.deleteById(id);
-    }
+//        System.out.println(bookContainer.getBooks());
+//        bookContainerDao.save(bookContainer);
+//        int id = bookContainer.getId();
+//
+//        Assertions.assertNotEquals(0, id);
+//
+//        bookContainerDao.deleteById(id);
+//    }
 
     @Test
     void testBookContainerDao() {
         BookContainer bookContainer = new BookContainer("free");
-        bookContainer.setBooks(new Books("TEST2", "TEST2", RELEASE_DATE));
+        bookContainer.setBooks(new Books("TEST TITLE", "TEST AUTHOR", RELEASE_DATE));
 
         int counterBefore = (int) bookContainerDao.count();
         bookContainerDao.save(bookContainer);
