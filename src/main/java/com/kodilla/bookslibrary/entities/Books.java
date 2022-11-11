@@ -4,21 +4,23 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "BOOKS")
-public final class Books {
+public class Books {
 
     private int id;
     private String title;
     private String author;
     private LocalDate releaseDate;
+    private List<BookPosition> bookPositions = new ArrayList<>();
 
     public Books() {}
 
-    public Books(final String name, final String author, final LocalDate releaseDate) {
+    public Books(String name, String author, LocalDate releaseDate) {
         this.title = name;
         this.author = author;
         this.releaseDate = releaseDate;
@@ -38,11 +40,11 @@ public final class Books {
 
     @Column(name = "TITLE")
     @NotNull
-    public String getName() {
+    public String getTitle() {
         return title;
     }
 
-    public void setName(String name) {
+    public void setTitle(String name) {
         this.title = name;
     }
 
@@ -64,6 +66,20 @@ public final class Books {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @OneToMany(
+            targetEntity = BookPosition.class,
+            mappedBy = "books",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<BookPosition> getBookPositions() {
+        return bookPositions;
+    }
+
+    public void setBookPositions(List<BookPosition> bookPositions) {
+        this.bookPositions = bookPositions;
     }
 
     @Override

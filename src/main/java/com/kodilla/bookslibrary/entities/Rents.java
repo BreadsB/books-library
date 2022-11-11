@@ -14,7 +14,7 @@ public class Rents {
     private LocalDate returnDate;
 
     private Customers customers;
-    private BookContainer bookContainer;
+    private BookPosition bookPosition;
 
     public Rents(LocalDate rentDate, LocalDate returnDate) {
         this.rentDate = rentDate;
@@ -53,7 +53,7 @@ public class Rents {
         this.returnDate = returnDate;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     public Customers getCustomers() {
         return customers;
@@ -63,20 +63,14 @@ public class Rents {
         this.customers = customers;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "BOOKCONTAINER_ID")
-    public BookContainer getBookContainer() {
-        return bookContainer;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "BOOKPOSITION_ID")
+    public BookPosition getBookPosition() {
+        return bookPosition;
     }
 
-    public void setBookContainer(BookContainer bookContainer) {
-        this.bookContainer = bookContainer;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer " +
-                customers.getFirstname() + " " + customers.getLastname() +
-                "rented book: " + bookContainer.getBooks().getName();
+    public void setBookPosition(BookPosition bookPosition) {
+        this.bookPosition = bookPosition;
     }
 }

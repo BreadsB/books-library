@@ -1,5 +1,6 @@
 package com.kodilla.bookslibrary.dao;
 
+import com.kodilla.bookslibrary.entities.BookPosition;
 import com.kodilla.bookslibrary.entities.Books;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,13 +16,15 @@ import java.util.Optional;
 @SpringBootTest
 public class BooksDaoTestSuite {
 
-    Books testBook = new Books("Test title", "Test Author", LocalDate.of(2008,7,14));
+    public final static LocalDate RELEASE_DATE = LocalDate.of(2000,5,6);
 
     @Autowired
     private BooksDao booksDao;
 
     @Test
-    void testDaoMethodsCreateFindDelete() {
+    void testAddNewBook() {
+
+        Books testBook = new Books("Test title", "Test Author", LocalDate.of(2008,7,14));
 
         booksDao.save(testBook);
 

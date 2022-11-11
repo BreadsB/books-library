@@ -6,18 +6,21 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "BOOKCONTAINER")
-public class BookContainer {
+@Table(name = "BOOKPOSITION")
+public class BookPosition {
 
     private int id;
     private String status; // Instead of String put here ENUM
+
     private Books books;
 
-    public BookContainer(String status) {
+    private Rents rents;
+
+    public BookPosition(String status) {
         this.status = status;
     }
 
-    public BookContainer() {}
+    public BookPosition() {}
 
     @Id
     @GeneratedValue
@@ -40,13 +43,22 @@ public class BookContainer {
         this.status = status;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "BOOK_ID")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "BOOK_ID", referencedColumnName = "id")
     public Books getBooks() {
         return books;
     }
 
     public void setBooks(Books books) {
         this.books = books;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bookPosition")
+    public Rents getRents() {
+        return rents;
+    }
+
+    public void setRents(Rents rents) {
+        this.rents = rents;
     }
 }
