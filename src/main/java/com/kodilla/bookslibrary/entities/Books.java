@@ -18,7 +18,6 @@ public class Books {
     private LocalDate releaseDate;
     private List<BookPosition> bookPositions = new ArrayList<>();
 
-
     public Books() {}
 
     public Books(String name, String author, LocalDate releaseDate) {
@@ -71,9 +70,7 @@ public class Books {
 
     @OneToMany(
             targetEntity = BookPosition.class,
-            mappedBy = "books",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            mappedBy = "books"
     )
     public List<BookPosition> getBookPositions() {
         return bookPositions;

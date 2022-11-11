@@ -14,6 +14,8 @@ public class BookPosition {
 
     private Books books;
 
+    private Rents rents;
+
     public BookPosition(String status) {
         this.status = status;
     }
@@ -49,5 +51,14 @@ public class BookPosition {
 
     public void setBooks(Books books) {
         this.books = books;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bookPosition")
+    public Rents getRents() {
+        return rents;
+    }
+
+    public void setRents(Rents rents) {
+        this.rents = rents;
     }
 }

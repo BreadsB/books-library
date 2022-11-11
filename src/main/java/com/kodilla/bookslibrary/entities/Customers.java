@@ -4,7 +4,9 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "CUSTOMERS")
@@ -14,10 +16,11 @@ public class Customers {
     private String firstname;
     private String lastname;
     private LocalDate registerdate;
+    private List<Rents> rents = new ArrayList<>();
 
     public Customers() {}
 
-    public Customers(final String firstname, final String lastname, final LocalDate registerdate) {
+    public Customers(String firstname, String lastname, LocalDate registerdate) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.registerdate = registerdate;
@@ -63,5 +66,14 @@ public class Customers {
 
     public void setRegisterdate(LocalDate registerdate) {
         this.registerdate = registerdate;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+    public List<Rents> getRents() {
+        return rents;
+    }
+
+    public void setRents(List<Rents> rents) {
+        this.rents = rents;
     }
 }

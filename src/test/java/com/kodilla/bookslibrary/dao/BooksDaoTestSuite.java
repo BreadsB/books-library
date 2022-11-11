@@ -16,14 +16,15 @@ import java.util.Optional;
 @SpringBootTest
 public class BooksDaoTestSuite {
 
-    Books testBook = new Books("Test title", "Test Author", LocalDate.of(2008,7,14));
     public final static LocalDate RELEASE_DATE = LocalDate.of(2000,5,6);
 
     @Autowired
     private BooksDao booksDao;
 
     @Test
-    void testDaoMethodsCreateFindDelete() {
+    void testAddNewBook() {
+
+        Books testBook = new Books("Test title", "Test Author", LocalDate.of(2008,7,14));
 
         booksDao.save(testBook);
 
@@ -32,28 +33,5 @@ public class BooksDaoTestSuite {
         Assertions.assertTrue(book.isPresent());
 
         booksDao.deleteById(result);
-    }
-
-    @Test
-    void testBooksDao() {
-        BookPosition bookPosition1 = new BookPosition("free");
-        BookPosition bookPosition2 = new BookPosition("rented");
-        BookPosition bookPosition3 = new BookPosition("lost");
-
-        Books book1 = new Books("booksDaoTest", "booksDaoTest", RELEASE_DATE);
-
-        book1.getBookPositions().add(bookPosition1);
-        book1.getBookPositions().add(bookPosition2);
-        book1.getBookPositions().add(bookPosition3);
-
-        bookPosition1.setBooks(book1);
-        bookPosition2.setBooks(book1);
-        bookPosition3.setBooks(book1);
-
-        long countBefore = booksDao.count();
-        booksDao.save(book1);
-        long countAfter = booksDao.count();
-
-        Assertions.assertTrue(countAfter > countBefore);
     }
 }
