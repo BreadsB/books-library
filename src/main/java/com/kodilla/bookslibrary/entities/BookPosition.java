@@ -6,21 +6,22 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "BOOKCONTAINER")
-public class BookContainer {
+@Table(name = "BOOKPOSITION")
+public class BookPosition {
 
     private int id;
     private String status; // Instead of String put here ENUM
+
     private Books books;
 
-    public BookContainer(String status) {
+    public BookPosition(String status) {
         this.status = status;
     }
 
-    public BookContainer() {}
+    public BookPosition() {}
 
     @Id
-    @GeneratedValue
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @Column(name = "ID", unique = true)
     public int getId() {
@@ -40,7 +41,7 @@ public class BookContainer {
         this.status = status;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "BOOK_ID")
     public Books getBooks() {
         return books;

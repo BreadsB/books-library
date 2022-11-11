@@ -1,6 +1,6 @@
 package com.kodilla.bookslibrary.dao;
 
-import com.kodilla.bookslibrary.entities.BookContainer;
+import com.kodilla.bookslibrary.entities.BookPosition;
 import com.kodilla.bookslibrary.entities.Books;
 import com.kodilla.bookslibrary.entities.Customers;
 import com.kodilla.bookslibrary.entities.Rents;
@@ -27,12 +27,12 @@ public class RentsDaoTestSuite {
                 "RENTDAOTEST CUSTOMER",
                 LocalDate.of(2000,10,10)
         );
-        BookContainer bookContainerTest = new BookContainer("RENTDAO TEST status");
+        BookPosition bookPositionTest = new BookPosition("RENTDAO TEST status");
         Customers customersTest = new Customers("Adam", "Nowak", LocalDate.now().minusMonths(1));
         Rents rentsTest = new Rents(LocalDate.now(), LocalDate.now().plusDays(5));
 
-        bookContainerTest.setBooks(bookTest);
-        rentsTest.setBookContainer(bookContainerTest);
+        bookPositionTest.setBooks(bookTest);
+        rentsTest.setBookContainer(bookPositionTest);
         rentsTest.setCustomers(customersTest);
 
         Long countBefore = rentsDao.count();
