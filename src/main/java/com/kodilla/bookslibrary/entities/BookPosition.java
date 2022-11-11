@@ -5,6 +5,18 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(
+                name = "BookPosition.retrieveLostBooks",
+                query = "FROM BookPosition WHERE status LIKE 'LOST'"
+        ),
+        @NamedQuery(
+                name = "BookPosition.retrieveRentedBooks",
+                query = "FROM BookPosition WHERE status LIKE 'RENTED'"
+        )
+})
+
+
 @Entity
 @Table(name = "BOOKPOSITION")
 public class BookPosition {

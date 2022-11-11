@@ -6,16 +6,18 @@ import com.kodilla.bookslibrary.entities.Customers;
 import com.kodilla.bookslibrary.entities.Rents;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import javax.persistence.EntityManager;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.time.LocalDate;
 
-//@ExtendWith(SpringExtension.class)
+@ExtendWith(SpringExtension.class)
+@RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class RentsDaoTestSuite {
-
-    EntityManager em;
 
     @Autowired
     RentsDao rentsDao;
@@ -23,21 +25,30 @@ public class RentsDaoTestSuite {
     @Test
     void testCreateNewRent() {
         Books bookTest = new Books(
-                "RENTDAO TEST",
-                "RENTDAOTEST CUSTOMER",
-                LocalDate.of(2000,10,10)
+                "Flying in forest",
+                "Camila Newman",
+                LocalDate.of(2008,10,10)
         );
-        BookPosition bookPositionTest = new BookPosition("FREE");
-        Customers customersTest = new Customers("Adam", "Nowak", LocalDate.now().minusMonths(1));
+        BookPosition bookPosition1Test = new BookPosition("LOST");
+        BookPosition bookPosition2Test = new BookPosition("RENTED");
+        Customers customersTest = new Customers("Janusz", "Prycz", LocalDate.now().minusMonths(1));
+        Customers customersTest2 = new Customers("Karol", "Bajgiel", LocalDate.now().minusMonths(1));
         Rents rentsTest = new Rents(LocalDate.now(), LocalDate.now().plusDays(5));
+        Rents rentsTest2 = new Rents(LocalDate.now(), LocalDate.now().plusDays(15));
 
-        bookPositionTest.setBooks(bookTest);
-        bookTest.getBookPositions().add(bookPositionTest);
+        bookPosition1Test.setBooks(bookTest);
+        bookPosition2Test.setBooks(bookTest);
+        bookTest.getBookPositions().add(bookPosition1Test);
+        bookTest.getBookPositions().add(bookPosition2Test);
 
-        rentsTest.setBookPosition(bookPositionTest);
+        rentsTest.setBookPosition(bookPosition1Test);
+        rentsTest2.setBookPosition(bookPosition2Test);
         rentsTest.setCustomers(customersTest);
-        bookPositionTest.setRents(rentsTest);
+        rentsTest2.setCustomers(customersTest2);
+        bookPosition1Test.setRents(rentsTest);
+        bookPosition2Test.setRents(rentsTest2);
         customersTest.getRents().add(rentsTest);
+        customersTest2.getRents().add(rentsTest2);
 
         long countBefore = rentsDao.count();
         rentsDao.save(rentsTest);

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static com.kodilla.bookslibrary.dao.BooksDaoTestSuite.RELEASE_DATE;
 
 @SpringBootTest
@@ -32,5 +34,33 @@ public class BookPositionDaoTestSuite {
         Assertions.assertTrue(countAfter > countBefore);
 
         bookPositionDao.deleteById(bookPosition1.getId());
+    }
+
+    @Test
+    void testRetrieveLostBooksQuery() {
+
+        String status = "LOST";
+        List<BookPosition> lostBooks = bookPositionDao.retrieveLostBooks();
+
+        if (lostBooks.isEmpty()) {
+            Assertions.assertTrue(true);
+        } else {
+            Assertions.assertNotEquals(0, lostBooks.size());
+            Assertions.assertEquals(status, lostBooks.listIterator().next().getStatus());
+        }
+    }
+
+    @Test
+    void testRetrieveRentedBooksQuery() {
+
+        String status = "RENTED";
+        List<BookPosition> rentedBooks = bookPositionDao.retrieveRentedBooks();
+
+        if (rentedBooks.isEmpty()) {
+            Assertions.assertTrue(true);
+        } else {
+            Assertions.assertNotEquals(0, rentedBooks.size());
+            Assertions.assertEquals(status, rentedBooks.listIterator().next().getStatus());
+        }
     }
 }
