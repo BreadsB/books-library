@@ -26,6 +26,6 @@ public class CustomersDaoTestSuite {
         Optional<Customers> findCustomer = customersDao.findById(id);
         Assertions.assertTrue(findCustomer.isPresent());
 
-//        customersDao.deleteById(id);
+        customersDao.deleteById(id);
     }
 }

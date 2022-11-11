@@ -30,5 +30,7 @@ public class BookPositionDaoTestSuite {
         long countAfter = bookPositionDao.count();
 
         Assertions.assertTrue(countAfter > countBefore);
+
+        bookPositionDao.deleteById(bookPosition1.getId());
     }
 }

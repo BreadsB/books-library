@@ -53,7 +53,9 @@ public class BookPosition {
         this.books = books;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bookPosition")
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            mappedBy = "bookPosition")
     public Rents getRents() {
         return rents;
     }

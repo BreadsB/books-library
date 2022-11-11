@@ -20,14 +20,14 @@ public class RentsDaoTestSuite {
     @Autowired
     RentsDao rentsDao;
 
-   /* @Test
+    @Test
     void testCreateNewRent() {
         Books bookTest = new Books(
                 "RENTDAO TEST",
                 "RENTDAOTEST CUSTOMER",
                 LocalDate.of(2000,10,10)
         );
-        BookPosition bookPositionTest = new BookPosition("RENTDAO TEST status");
+        BookPosition bookPositionTest = new BookPosition("FREE");
         Customers customersTest = new Customers("Adam", "Nowak", LocalDate.now().minusMonths(1));
         Rents rentsTest = new Rents(LocalDate.now(), LocalDate.now().plusDays(5));
 
@@ -44,5 +44,5 @@ public class RentsDaoTestSuite {
         long countAfter = rentsDao.count();
 
         Assertions.assertTrue(countAfter>countBefore);
-    }*/
+    }
 }
