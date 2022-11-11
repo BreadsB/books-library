@@ -70,7 +70,9 @@ public class Books {
 
     @OneToMany(
             targetEntity = BookPosition.class,
-            mappedBy = "books"
+            mappedBy = "books",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
     public List<BookPosition> getBookPositions() {
         return bookPositions;
