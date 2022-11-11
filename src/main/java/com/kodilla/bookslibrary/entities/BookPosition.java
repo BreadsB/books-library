@@ -21,7 +21,7 @@ public class BookPosition {
     public BookPosition() {}
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @NotNull
     @Column(name = "ID", unique = true)
     public int getId() {

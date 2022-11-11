@@ -10,14 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 @SpringBootTest
-public class BookContainerDaoTestSuite {
+public class BookPositionDaoTestSuite {
 
     public final static LocalDate RELEASE_DATE = LocalDate.of(2000,5,6);
     @Autowired
-    BookContainerDao bookContainerDao;
-
-    @Autowired
-    BooksDao booksDao;
+    BookPositionDao bookPositionDao;
 
 /*    @Test
     void testGetBookFromDatabaseAndPutInContainer() {
@@ -35,15 +32,25 @@ public class BookContainerDaoTestSuite {
 
     @Test
     void testBookContainerDao() {
-        BookPosition bookPosition = new BookPosition("free");
-        bookPosition.setBooks(new Books("TEST TITLE", "TEST AUTHOR", RELEASE_DATE));
+        BookPosition bookPosition1 = new BookPosition("BookPositionTest1");
+        BookPosition bookPosition2 = new BookPosition("BookPositionTest2");
 
-        int counterBefore = (int) bookContainerDao.count();
-        bookContainerDao.save(bookPosition);
-        int countAfter = (int) bookContainerDao.count();
+        Books book1 = new Books("BookPositionTest1", "BookPositionTest1", RELEASE_DATE);
+        Books book2 = new Books("BookPositionTest2", "BookPositionTest2", RELEASE_DATE);
 
-        Assertions.assertNotEquals(counterBefore, countAfter);
+        bookPosition1.setBooks(book1);
+        bookPosition2.setBooks(book2);
 
-        bookContainerDao.deleteById(bookPosition.getId());
+        book1.getBookPositions().add(bookPosition1);
+        book2.getBookPositions().add(bookPosition2);
+
+        long countBefore = bookPositionDao.count();
+
+        bookPositionDao.save(bookPosition1);
+        bookPositionDao.save(bookPosition2);
+
+        long countAfter = bookPositionDao.count();
+
+        Assertions.assertTrue(countAfter > countBefore);
     }
 }

@@ -69,7 +69,12 @@ public class Books {
         this.releaseDate = releaseDate;
     }
 
-    @OneToMany(mappedBy = "books")
+    @OneToMany(
+            targetEntity = BookPosition.class,
+            mappedBy = "books",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     public List<BookPosition> getBookPositions() {
         return bookPositions;
     }

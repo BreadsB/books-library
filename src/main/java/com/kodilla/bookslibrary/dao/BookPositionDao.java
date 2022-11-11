@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface BookContainerDao extends CrudRepository<BookPosition, Integer> {
+public interface BookPositionDao extends CrudRepository<BookPosition, Integer> {
 }
