@@ -1,11 +1,11 @@
-package com.kodilla.bookslibrary.entities;
+package com.kodilla.bookslibrary.customer;
 
+import com.kodilla.bookslibrary.rents.Rents;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity

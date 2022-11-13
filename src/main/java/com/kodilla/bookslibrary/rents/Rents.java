@@ -1,5 +1,7 @@
-package com.kodilla.bookslibrary.entities;
+package com.kodilla.bookslibrary.rents;
 
+import com.kodilla.bookslibrary.bookposition.BookPosition;
+import com.kodilla.bookslibrary.customer.Customers;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;

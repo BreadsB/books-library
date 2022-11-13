@@ -1,9 +1,10 @@
 package com.kodilla.bookslibrary.dao;
 
-import com.kodilla.bookslibrary.entities.BookPosition;
-import com.kodilla.bookslibrary.entities.Books;
-import com.kodilla.bookslibrary.entities.Customers;
-import com.kodilla.bookslibrary.entities.Rents;
+import com.kodilla.bookslibrary.bookposition.BookPosition;
+import com.kodilla.bookslibrary.book.Books;
+import com.kodilla.bookslibrary.customer.Customers;
+import com.kodilla.bookslibrary.rents.Rents;
+import com.kodilla.bookslibrary.rents.RentsDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,5 +1,6 @@
-package com.kodilla.bookslibrary.entities;
+package com.kodilla.bookslibrary.book;
 
+import com.kodilla.bookslibrary.bookposition.BookPosition;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -71,7 +72,7 @@ public class Books {
     @OneToMany(
             targetEntity = BookPosition.class,
             mappedBy = "books",
-            cascade = CascadeType.ALL,
+//            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     public List<BookPosition> getBookPositions() {

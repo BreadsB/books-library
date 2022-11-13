@@ -1,7 +1,8 @@
 package com.kodilla.bookslibrary.dao;
 
-import com.kodilla.bookslibrary.entities.BookPosition;
-import com.kodilla.bookslibrary.entities.Books;
+import com.kodilla.bookslibrary.bookposition.BookPosition;
+import com.kodilla.bookslibrary.book.Books;
+import com.kodilla.bookslibrary.bookposition.BookPositionDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,19 @@ public class BookPositionDaoTestSuite {
         } else {
             Assertions.assertNotEquals(0, rentedBooks.size());
             Assertions.assertEquals(status, rentedBooks.listIterator().next().getStatus());
+        }
+    }
+
+    @Test
+    void testRetrieveBooksByStatus() {
+        String status = "free";
+        List<BookPosition> bookPositionList = bookPositionDao.retrieveBooksByStatus(status);
+
+        if (bookPositionList.isEmpty()) {
+            Assertions.assertTrue(true);
+        } else {
+            Assertions.assertNotEquals(0, bookPositionList.size());
+            Assertions.assertEquals(status, bookPositionList.listIterator().next().getStatus());
         }
     }
 }

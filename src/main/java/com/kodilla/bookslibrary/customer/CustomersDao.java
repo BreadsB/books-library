@@ -1,6 +1,6 @@
-package com.kodilla.bookslibrary.dao;
+package com.kodilla.bookslibrary.customer;
 
-import com.kodilla.bookslibrary.entities.Customers;
+import com.kodilla.bookslibrary.customer.Customers;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.kodilla.bookslibrary.dao;
+package com.kodilla.bookslibrary.rents;
 
-import com.kodilla.bookslibrary.entities.Rents;
+import com.kodilla.bookslibrary.rents.Rents;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

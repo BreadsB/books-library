@@ -1,9 +1,10 @@
-package com.kodilla.bookslibrary.entities;
+package com.kodilla.bookslibrary.bookposition;
 
+import com.kodilla.bookslibrary.book.Books;
+import com.kodilla.bookslibrary.rents.Rents;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NamedQueries({
         @NamedQuery(
@@ -13,9 +14,12 @@ import java.util.List;
         @NamedQuery(
                 name = "BookPosition.retrieveRentedBooks",
                 query = "FROM BookPosition WHERE status LIKE 'RENTED'"
+        ),
+        @NamedQuery(
+                name = "BookPosition.retrieveBooksByStatus",
+                query = "FROM BookPosition WHERE status LIKE upper(:STATUS)"
         )
 })
-
 
 @Entity
 @Table(name = "BOOKPOSITION")

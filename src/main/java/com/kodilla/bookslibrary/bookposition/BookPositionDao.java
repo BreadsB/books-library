@@ -1,9 +1,9 @@
-package com.kodilla.bookslibrary.dao;
+package com.kodilla.bookslibrary.bookposition;
 
-import com.kodilla.bookslibrary.entities.BookPosition;
-import com.kodilla.bookslibrary.entities.Books;
+import com.kodilla.bookslibrary.bookposition.BookPosition;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -17,4 +17,7 @@ public interface BookPositionDao extends CrudRepository<BookPosition, Integer> {
     List<BookPosition> retrieveLostBooks();
     @Query
     List<BookPosition> retrieveRentedBooks();
+
+    @Query
+    List<BookPosition> retrieveBooksByStatus(@Param("STATUS") String status);
 }

@@ -1,7 +1,7 @@
 package com.kodilla.bookslibrary.dao;
 
-import com.kodilla.bookslibrary.entities.BookPosition;
-import com.kodilla.bookslibrary.entities.Books;
+import com.kodilla.bookslibrary.book.Books;
+import com.kodilla.bookslibrary.book.BooksDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
