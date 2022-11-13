@@ -22,7 +22,7 @@ public class BookPositionDaoTestSuite {
     void testBookContainerDao() {
         BookPosition bookPosition1 = new BookPosition("free");
 
-        Books book1 = new Books("BookPositionDaoTest1", "BookPositionDaoTest1", RELEASE_DATE);
+        Books book1 = new Books(1, "BookPositionDaoTest1", "BookPositionDaoTest1", RELEASE_DATE);
 
         book1.getBookPositions().add(bookPosition1);
 

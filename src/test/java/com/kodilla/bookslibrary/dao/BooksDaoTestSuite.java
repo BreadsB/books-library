@@ -24,7 +24,7 @@ public class BooksDaoTestSuite {
     @Test
     void testAddNewBook() {
 
-        Books testBook = new Books("Test title", "Test Author", LocalDate.of(2008,7,14));
+        Books testBook = new Books(1, "Test title", "Test Author", LocalDate.of(2008,7,14));
 
         booksDao.save(testBook);
 

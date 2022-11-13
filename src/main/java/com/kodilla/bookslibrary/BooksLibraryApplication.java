@@ -10,11 +10,6 @@ import java.time.LocalDate;
 public class BooksLibraryApplication {
 
     public static void main(String[] args) {
-
-        BooksDto booksDto = new BooksDto(10,"DTO TEST", "DTO TEST", LocalDate.now());
-
-        System.out.println(booksDto.getId() +" "+ booksDto.getAuthor() +" "+ booksDto.getReleaseDate());
-
         SpringApplication.run(BooksLibraryApplication.class, args);
     }
 

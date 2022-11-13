@@ -26,6 +26,7 @@ public class RentsDaoTestSuite {
     @Test
     void testCreateNewRent() {
         Books bookTest = new Books(
+                1,
                 "Flying in forest",
                 "Camila Newman",
                 LocalDate.of(2008,10,10)
