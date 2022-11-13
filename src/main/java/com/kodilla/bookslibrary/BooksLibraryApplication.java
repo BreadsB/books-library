@@ -13,6 +13,8 @@ public class BooksLibraryApplication {
 
         BooksDto booksDto = new BooksDto(10,"DTO TEST", "DTO TEST", LocalDate.now());
 
+        System.out.println(booksDto.getId() +" "+ booksDto.getAuthor() +" "+ booksDto.getReleaseDate());
+
         SpringApplication.run(BooksLibraryApplication.class, args);
     }
 
