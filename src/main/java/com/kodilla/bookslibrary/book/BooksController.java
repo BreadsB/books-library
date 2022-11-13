@@ -1,42 +1,51 @@
 package com.kodilla.bookslibrary.book;
 
 import com.kodilla.bookslibrary.DbService;
-import lombok.RequiredArgsConstructor;
+import com.kodilla.bookslibrary.exceptions.BooksNotFoundException;
+import com.kodilla.bookslibrary.exceptions.GlobalHttpErrorHandler;
+import com.kodilla.bookslibrary.exceptions.BookNotFoundException;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/books")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class BooksController {
 
     private final DbService dbService;
     private final BooksMapper booksMapper;
 
+
+    BooksController(DbService dbService, BooksMapper booksMapper) {
+        this.dbService = dbService;
+        this.booksMapper = booksMapper;
+    }
+
     @GetMapping
-    public List<BooksDto> getBooks() {
-        return booksMapper.mapToBooksDtoList(dbService.getAllBooks());
+    public ResponseEntity<List<BooksDto>> getBooks() throws BooksNotFoundException {
+        return ResponseEntity.ok(booksMapper.mapToBooksDtoList(dbService.getAllBooks()));
     }
 
     @GetMapping(value = "{bookId}")
-    public BooksDto getBook(@PathVariable int bookId) {
-        return new BooksDto(1, "SAMPLE BOOK", "SAMPLE AUTHOR", LocalDate.now());
+    public ResponseEntity<BooksDto> getBook(@PathVariable int bookId) throws BookNotFoundException {
+            return ResponseEntity.ok(booksMapper.mapToBooksDto(dbService.getBookById(bookId)));
     }
 
     @DeleteMapping
     public void deleteBook(int bookId) {
+
     }
 
     @PutMapping
-    public BooksDto updateBook(BooksDto booksDto) {
-        return new BooksDto(1, "UPDATED SAMPLE BOOK", "UPDATED SAMPLE AUTHOR", LocalDate.now().minusDays(1));
+    public BooksDto updateBook(@RequestBody BooksDto booksDto) {
+        return new BooksDto(booksDto.getId(), booksDto.getTitle(), booksDto.getAuthor(), booksDto.getReleaseDate());
     }
 
-    @PostMapping
-    public void createBook(BooksDto booksDto) {
-
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createBook(@RequestBody BooksDto booksDto) {
+        dbService.saveBook( booksMapper.mapToBooks(booksDto) );
     }
 }

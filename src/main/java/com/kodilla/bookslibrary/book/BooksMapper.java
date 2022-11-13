@@ -24,7 +24,7 @@ public class BooksMapper {
 
     public List<BooksDto> mapToBooksDtoList(final List<Books> booksList) {
         return booksList.stream()
-                .map(books -> mapToBooksDto(books))
+                .map(this::mapToBooksDto)
                 .collect(Collectors.toList());
     }
 }
