@@ -3,6 +3,6 @@ package com.kodilla.bookslibrary.exceptions;
 public class BooksNotFoundException extends Exception {
 
     public BooksNotFoundException() {
-        super("No books in database!");
+        super("Couldn't find book with that id");
     }
 }
