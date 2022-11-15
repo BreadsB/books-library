@@ -23,7 +23,6 @@ public class BookPositionDaoTestSuite {
         BookPosition bookPosition1 = new BookPosition("free");
 
         Books book1 = new Books(1, "BookPositionDaoTest1", "BookPositionDaoTest1", RELEASE_DATE);
-
         book1.getBookPositions().add(bookPosition1);
 
         bookPosition1.setBooks(book1);

@@ -12,7 +12,6 @@ import java.util.List;
 //@RequiredArgsConstructor
 public class DbService {
 
-    @Autowired
     private final BooksDao booksDao;
 
     public DbService(BooksDao booksDao) {
