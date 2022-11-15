@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
@@ -34,5 +36,17 @@ public class BooksDaoTestSuite {
         Assertions.assertTrue(book.isPresent());
 
         booksDao.deleteById(result);
+    }
+
+    @Test
+    void testFindAllBooks() {
+        List<Books> booksList = booksDao.findAll();
+        Assertions.assertEquals(0, booksList.size());
+    }
+
+    @Test
+    void testDeleteFromDataBase() {
+        Books book = booksDao.findAll().listIterator().next();
+        booksDao.deleteById(book.getId());
     }
 }

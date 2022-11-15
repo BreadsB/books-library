@@ -2,6 +2,7 @@ package com.kodilla.bookslibrary.book;
 
 import com.kodilla.bookslibrary.bookposition.BookPosition;
 import com.sun.istack.NotNull;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.time.LocalDate;

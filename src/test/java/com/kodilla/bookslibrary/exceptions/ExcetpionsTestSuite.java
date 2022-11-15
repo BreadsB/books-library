@@ -7,34 +7,18 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 @SpringBootTest
-//@ActiveProfiles("h2database")
+@ActiveProfiles("h2database")
 public class ExcetpionsTestSuite {
 
-    @Autowired
+//    @Autowired
+    @MockBean
     BooksDao booksDao;
-
-    @Autowired
-    BooksController booksController;
-
-    @Test
-    void testNoBooksInDataBase() {
-        List<Books> booksList = booksDao.findAll();
-        Assertions.assertEquals(0, booksList.size());
-    }
-
-    @Test
-    void testDeleteFromDataBase() {
-        Books book = booksDao.findAll().listIterator().next();
-        booksDao.deleteById(book.getId());
-    }
-
-    @Test
-    void contextLoads() {
-        Assertions.assertNotNull(booksController);
-    }
 }

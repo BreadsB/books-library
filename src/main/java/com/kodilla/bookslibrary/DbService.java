@@ -4,7 +4,6 @@ import com.kodilla.bookslibrary.exceptions.BookNotFoundException;
 import com.kodilla.bookslibrary.book.Books;
 import com.kodilla.bookslibrary.book.BooksDao;
 import com.kodilla.bookslibrary.exceptions.BooksNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +30,11 @@ public class DbService {
         return booksDao.save(book);
     }
 
-    public void deleteBookById(final int id) throws BooksNotFoundException {
-        booksDao.deleteById(id);
+    public void deleteBookById(final int id) {
+
+        if (booksDao.existsById(id)) {
+            booksDao.deleteById(id);
+        }
     }
 
 }
