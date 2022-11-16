@@ -41,12 +41,16 @@ public class BooksDaoTestSuite {
     @Test
     void testFindAllBooks() {
         List<Books> booksList = booksDao.findAll();
-        Assertions.assertEquals(0, booksList.size());
+        Assertions.assertNotEquals(0, booksList.size());
     }
 
     @Test
     void testDeleteFromDataBase() {
-        Books book = booksDao.findAll().listIterator().next();
-        booksDao.deleteById(book.getId());
+        List<Books> result1 = booksDao.findAll();
+        Books book = result1.iterator().next();
+        Assertions.assertTrue(booksDao.existsById(book.getId()));
+//        booksDao.deleteById(book.getId());
     }
+
+
 }

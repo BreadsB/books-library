@@ -68,7 +68,7 @@ public class Customers {
         this.registerdate = registerdate;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customers", fetch = FetchType.LAZY)
     public List<Rents> getRents() {
         return rents;
     }

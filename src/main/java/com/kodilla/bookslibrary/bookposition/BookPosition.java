@@ -59,7 +59,7 @@ public class BookPosition {
         this.status = status;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "BOOK_ID", referencedColumnName = "id")
     public Books getBooks() {
         return books;

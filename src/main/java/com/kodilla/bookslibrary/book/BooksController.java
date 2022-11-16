@@ -1,7 +1,5 @@
 package com.kodilla.bookslibrary.book;
 
-import com.kodilla.bookslibrary.DbService;
-import com.kodilla.bookslibrary.exceptions.BooksNotFoundException;
 import com.kodilla.bookslibrary.exceptions.BookNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +12,11 @@ import java.util.List;
 //@RequiredArgsConstructor
 public class BooksController {
 
-    private final DbService dbService;
+    private final BookService dbService;
     private final BooksMapper booksMapper;
 
 
-    BooksController(DbService dbService, BooksMapper booksMapper) {
+    BooksController(BookService dbService, BooksMapper booksMapper) {
         this.dbService = dbService;
         this.booksMapper = booksMapper;
     }
@@ -34,7 +32,7 @@ public class BooksController {
     }
 
     @DeleteMapping(value = "{bookId}")
-    public ResponseEntity<Void> deleteBook(@PathVariable int bookId) throws BooksNotFoundException {
+    public ResponseEntity<Void> deleteBook(@PathVariable int bookId) {
         dbService.deleteBookById(bookId);
         return ResponseEntity.ok().build();
     }
