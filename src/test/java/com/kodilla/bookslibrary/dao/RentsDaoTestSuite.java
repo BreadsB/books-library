@@ -1,26 +1,23 @@
 package com.kodilla.bookslibrary.dao;
 
 import com.kodilla.bookslibrary.bookposition.BookPosition;
-import com.kodilla.bookslibrary.book.Books;
 import com.kodilla.bookslibrary.customer.Customers;
 import com.kodilla.bookslibrary.rents.Rents;
 import com.kodilla.bookslibrary.rents.RentsDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import java.time.LocalDate;
 import java.util.Optional;
 
-@ExtendWith(SpringExtension.class)
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-//@ActiveProfiles("h2database")
+@ActiveProfiles("h2database")
 public class RentsDaoTestSuite {
 
     @Autowired

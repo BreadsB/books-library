@@ -19,7 +19,7 @@ public class BookPositionDaoTestSuite {
 
     @Test
     void testAddNewBookPositionToRepository() {
-        BookPosition bookPosition = new BookPosition(1, "TEST");
+        BookPosition bookPosition = new BookPosition("TEST");
 
         long countBefore = bookPositionDao.count();
         bookPositionDao.save(bookPosition);
@@ -33,41 +33,26 @@ public class BookPositionDaoTestSuite {
     @Test
     void testRetrieveLostBooksQuery() {
 
-        String status = "LOST";
+        BookPosition bookPosition = new BookPosition("LOST");
+        bookPositionDao.save(bookPosition);
         List<BookPosition> lostBooks = bookPositionDao.retrieveLostBooks();
-
-        if (lostBooks.isEmpty()) {
-            Assertions.assertTrue(true);
-        } else {
-            Assertions.assertNotEquals(0, lostBooks.size());
-            Assertions.assertEquals(status, lostBooks.listIterator().next().getStatus());
-        }
+        Assertions.assertEquals(1, lostBooks.size());
     }
 
     @Test
     void testRetrieveRentedBooksQuery() {
-
-        String status = "RENTED";
+        BookPosition bookPosition = new BookPosition("RENTED");
+        bookPositionDao.save(bookPosition);
         List<BookPosition> rentedBooks = bookPositionDao.retrieveRentedBooks();
-
-        if (rentedBooks.isEmpty()) {
-            Assertions.assertTrue(true);
-        } else {
-            Assertions.assertNotEquals(0, rentedBooks.size());
-            Assertions.assertEquals(status, rentedBooks.listIterator().next().getStatus());
-        }
+        Assertions.assertEquals(1, rentedBooks.size());
     }
 
     @Test
     void testRetrieveBooksByStatus() {
-        String status = "free";
+        String status = "FREE";
+        BookPosition bookPosition = new BookPosition(status);
+        bookPositionDao.save(bookPosition);
         List<BookPosition> bookPositionList = bookPositionDao.retrieveBooksByStatus(status);
-
-        if (bookPositionList.isEmpty()) {
-            Assertions.assertTrue(true);
-        } else {
-            Assertions.assertNotEquals(0, bookPositionList.size());
-            Assertions.assertEquals(status, bookPositionList.listIterator().next().getStatus());
-        }
+        Assertions.assertEquals(1, bookPositionList.size());
     }
 }

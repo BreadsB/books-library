@@ -2,9 +2,9 @@ package com.kodilla.bookslibrary.bookposition;
 
 import com.kodilla.bookslibrary.book.Books;
 import com.kodilla.bookslibrary.rents.Rents;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @NamedQueries({
         @NamedQuery(
@@ -32,8 +32,7 @@ public class BookPosition {
 
     private Rents rents;
 
-    public BookPosition(int id, String status) {
-        this.id = id;
+    public BookPosition(String status) {
         this.status = status;
     }
 

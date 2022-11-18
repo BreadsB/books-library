@@ -45,7 +45,7 @@ public class BooksController {
         return ResponseEntity.ok(booksMapper.mapToBooksDto(savedBook));
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping
     public ResponseEntity<Void> createBook(@RequestBody BooksDto booksDto) {
         dbService.saveBook( booksMapper.mapToBooks(booksDto) );
         return ResponseEntity.ok().build();

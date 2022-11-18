@@ -1,10 +1,8 @@
 package com.kodilla.bookslibrary.book;
 
 import com.kodilla.bookslibrary.bookposition.BookPosition;
-import com.sun.istack.NotNull;
-import lombok.Builder;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
@@ -18,11 +19,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("h2database")
 public class BooksControllerTestSuite {
+
+//    Testing BooksController with MockMVC
 
     @Autowired
     private MockMvc mockMvc;
-
     @Test
     void testGetAllBooks() throws Exception {
         this.mockMvc.perform(get("/books"))
@@ -40,7 +43,8 @@ public class BooksControllerTestSuite {
     @Test
     void testDeleteBook() throws Exception {
         this.mockMvc.perform(delete("/books/1"))
-                .andDo(print());
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     @Test

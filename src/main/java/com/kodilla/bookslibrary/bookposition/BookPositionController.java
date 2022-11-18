@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class BookPositionController {
 
     private final BookPositionService service;
-    private final BooksPositionMapper mapper;
+    private final BookPositionMapper mapper;
 
     @GetMapping(value = "{id}")
     BookPositionDto getBookPosition(@PathVariable int id) throws BookPositionNotFoundException {
@@ -29,8 +29,8 @@ public class BookPositionController {
     }
 
     @PostMapping
-    void createBookPosition(BookPosition bookPosition) {
-        service.createBookPosition(bookPosition);
+    void createBookPosition(BookPositionDto bookPositionDto) {
+        service.createBookPosition(mapper.convertToBookPosition(bookPositionDto));
     }
 
     @PutMapping("{bookPositionId}")
@@ -38,7 +38,8 @@ public class BookPositionController {
         service.updateBookPosition(bookPositionId, bookPosition);
     }
 
-    void deleteBookPosition() {
-
+    @DeleteMapping("{id}")
+    void deleteBookPosition(@PathVariable int id) {
+        service.deleteBookPositionById(id);
     }
 }
