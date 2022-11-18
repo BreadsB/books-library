@@ -1,39 +1,33 @@
 package com.kodilla.bookslibrary.dao;
 
 import com.kodilla.bookslibrary.bookposition.BookPosition;
-import com.kodilla.bookslibrary.book.Books;
 import com.kodilla.bookslibrary.bookposition.BookPositionDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
-import static com.kodilla.bookslibrary.dao.BooksDaoTestSuite.RELEASE_DATE;
 
 @SpringBootTest
+@ActiveProfiles("h2database")
 public class BookPositionDaoTestSuite {
 
     @Autowired
     BookPositionDao bookPositionDao;
 
     @Test
-    void testBookContainerDao() {
-        BookPosition bookPosition1 = new BookPosition("free");
-
-        Books book1 = new Books(1, "BookPositionDaoTest1", "BookPositionDaoTest1", RELEASE_DATE);
-        book1.getBookPositions().add(bookPosition1);
-
-        bookPosition1.setBooks(book1);
+    void testAddNewBookPositionToRepository() {
+        BookPosition bookPosition = new BookPosition(1, "TEST");
 
         long countBefore = bookPositionDao.count();
-        bookPositionDao.save(bookPosition1);
+        bookPositionDao.save(bookPosition);
         long countAfter = bookPositionDao.count();
 
         Assertions.assertTrue(countAfter > countBefore);
 
-        bookPositionDao.deleteById(bookPosition1.getId());
+        bookPositionDao.deleteById(bookPosition.getId());
     }
 
     @Test
