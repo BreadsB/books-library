@@ -65,7 +65,7 @@ public class Rents {
         this.customers = customers;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "BOOKPOSITION_ID")
     public BookPosition getBookPosition() {
         return bookPosition;

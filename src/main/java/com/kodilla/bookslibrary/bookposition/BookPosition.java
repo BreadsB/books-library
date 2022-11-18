@@ -32,7 +32,8 @@ public class BookPosition {
 
     private Rents rents;
 
-    public BookPosition(String status) {
+    public BookPosition(int id, String status) {
+        this.id = id;
         this.status = status;
     }
 
@@ -59,7 +60,7 @@ public class BookPosition {
         this.status = status;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "BOOK_ID", referencedColumnName = "id")
     public Books getBooks() {
         return books;
@@ -71,6 +72,7 @@ public class BookPosition {
 
     @OneToOne(
             cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
             mappedBy = "bookPosition")
     public Rents getRents() {
         return rents;

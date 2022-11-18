@@ -1,20 +1,19 @@
-package com.kodilla.bookslibrary;
+package com.kodilla.bookslibrary.book;
 
 import com.kodilla.bookslibrary.exceptions.BookNotFoundException;
 import com.kodilla.bookslibrary.book.Books;
 import com.kodilla.bookslibrary.book.BooksDao;
-import com.kodilla.bookslibrary.exceptions.BooksNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 //@RequiredArgsConstructor
-public class DbService {
+public class BookService {
 
     private final BooksDao booksDao;
 
-    public DbService(BooksDao booksDao) {
+    public BookService(BooksDao booksDao) {
         this.booksDao = booksDao;
     }
 
@@ -26,8 +25,15 @@ public class DbService {
         return booksDao.findById(id).orElseThrow(BookNotFoundException::new);
     }
 
-    public void saveBook(final Books book) {
-        booksDao.save(book);
+    public Books saveBook(final Books book) {
+        return booksDao.save(book);
+    }
+
+    public void deleteBookById(final int id) {
+
+        if (booksDao.existsById(id)) {
+            booksDao.deleteById(id);
+        }
     }
 
 }

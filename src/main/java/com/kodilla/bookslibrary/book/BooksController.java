@@ -1,9 +1,7 @@
 package com.kodilla.bookslibrary.book;
 
-import com.kodilla.bookslibrary.DbService;
-import com.kodilla.bookslibrary.exceptions.BooksNotFoundException;
-import com.kodilla.bookslibrary.exceptions.GlobalHttpErrorHandler;
 import com.kodilla.bookslibrary.exceptions.BookNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +13,17 @@ import java.util.List;
 //@RequiredArgsConstructor
 public class BooksController {
 
-    private final DbService dbService;
+    private final BookService dbService;
     private final BooksMapper booksMapper;
 
 
-    BooksController(DbService dbService, BooksMapper booksMapper) {
+    BooksController(BookService dbService, BooksMapper booksMapper) {
         this.dbService = dbService;
         this.booksMapper = booksMapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<BooksDto>> getBooks() throws BooksNotFoundException {
+    public ResponseEntity<List<BooksDto>> getBooks() {
         return ResponseEntity.ok(booksMapper.mapToBooksDtoList(dbService.getAllBooks()));
     }
 
@@ -34,18 +32,22 @@ public class BooksController {
             return ResponseEntity.ok(booksMapper.mapToBooksDto(dbService.getBookById(bookId)));
     }
 
-    @DeleteMapping
-    public void deleteBook(int bookId) {
-
+    @DeleteMapping(value = "{bookId}")
+    public ResponseEntity<Void> deleteBook(@PathVariable int bookId) {
+        dbService.deleteBookById(bookId);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public BooksDto updateBook(@RequestBody BooksDto booksDto) {
-        return new BooksDto(booksDto.getId(), booksDto.getTitle(), booksDto.getAuthor(), booksDto.getReleaseDate());
+    public ResponseEntity<BooksDto> updateBook(@RequestBody BooksDto booksDto) {
+        Books book = booksMapper.mapToBooks(booksDto);
+        Books savedBook = dbService.saveBook(book);
+        return ResponseEntity.ok(booksMapper.mapToBooksDto(savedBook));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createBook(@RequestBody BooksDto booksDto) {
+    public ResponseEntity<Void> createBook(@RequestBody BooksDto booksDto) {
         dbService.saveBook( booksMapper.mapToBooks(booksDto) );
+        return ResponseEntity.ok().build();
     }
 }

@@ -17,7 +17,9 @@ public interface BookPositionDao extends CrudRepository<BookPosition, Integer> {
     List<BookPosition> retrieveLostBooks();
     @Query
     List<BookPosition> retrieveRentedBooks();
-
     @Query
     List<BookPosition> retrieveBooksByStatus(@Param("STATUS") String status);
+
+    @Override
+    List<BookPosition> findAll();
 }

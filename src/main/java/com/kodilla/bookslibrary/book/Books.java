@@ -2,6 +2,7 @@ package com.kodilla.bookslibrary.book;
 
 import com.kodilla.bookslibrary.bookposition.BookPosition;
 import com.sun.istack.NotNull;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class Books {
 
     public Books() {}
 
-    public Books(int id, String name, String author, LocalDate releaseDate) {
+    public Books(String name, String author, LocalDate releaseDate) {
         this.title = name;
         this.author = author;
         this.releaseDate = releaseDate;
@@ -72,8 +73,8 @@ public class Books {
     @OneToMany(
             targetEntity = BookPosition.class,
             mappedBy = "books",
-//            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
     public List<BookPosition> getBookPositions() {
         return bookPositions;
