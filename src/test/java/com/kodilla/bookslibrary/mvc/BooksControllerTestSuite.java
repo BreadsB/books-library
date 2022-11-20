@@ -1,4 +1,4 @@
-package com.kodilla.bookslibrary;
+package com.kodilla.bookslibrary.mvc;
 
 import com.kodilla.bookslibrary.book.BooksController;
 import org.junit.jupiter.api.Test;
