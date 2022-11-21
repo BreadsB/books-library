@@ -41,7 +41,7 @@ public class BookPositionController {
     }
 
     @DeleteMapping("{id}")
-    ResponseEntity<Void> deleteBookPosition(@PathVariable int id) {
+    ResponseEntity<Void> deleteBookPosition(@PathVariable int id) throws BookPositionNotFoundException {
         service.deleteBookPositionById(id);
         return ResponseEntity.ok().build();
     }

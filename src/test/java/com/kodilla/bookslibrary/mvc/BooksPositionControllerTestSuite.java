@@ -32,8 +32,8 @@ public class BooksPositionControllerTestSuite {
     void testGetBookPosition() throws Exception {
         this.mockMvc.perform(get("/bookposition/{id}", 5))
                 .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string("Book position with given id does not exist. Check your id."));
+                .andExpect(status().isBadRequest());
+//                .andExpect(content().string("Book position with given id does not exist. Check your id."));
     }
 
     @Test
@@ -69,7 +69,8 @@ public class BooksPositionControllerTestSuite {
     @Test
     void testDeleteBookPosition() throws Exception {
         this.mockMvc.perform(delete("/bookposition/{id}", 100))
-                .andExpect(status().isOk());
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 
     @Test

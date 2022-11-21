@@ -21,7 +21,8 @@ public class BookPositionService {
         return bookPositionDao.findById(id).orElseThrow(BookPositionNotFoundException::new);
     }
 
-    void deleteBookPositionById(int id) {
+    void deleteBookPositionById(int id) throws BookPositionNotFoundException {
+        bookPositionDao.findById(id).orElseThrow(BookPositionNotFoundException::new);
         bookPositionDao.deleteById(id);
     }
 
