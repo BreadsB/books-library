@@ -19,4 +19,5 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>("Book position with give id does not exist", HttpStatus.BAD_REQUEST);
     }
 
+
 }
