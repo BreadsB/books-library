@@ -68,6 +68,5 @@ public class BookPositionDaoTestSuite {
         int result = (int) bookPositionDao.count();
 
         Assertions.assertNotEquals(0L, result);
-        System.out.println(bookPositionDao.findAll());
     }
 }

@@ -71,8 +71,7 @@ public class Books {
     @OneToMany(
             targetEntity = BookPosition.class,
             mappedBy = "books",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
+            cascade = CascadeType.ALL
     )
     public List<BookPosition> getBookPositions() {
         return bookPositions;

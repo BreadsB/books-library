@@ -71,7 +71,6 @@ public class BookPosition {
 
     @OneToOne(
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
             mappedBy = "bookPosition")
     public Rents getRents() {
         return rents;

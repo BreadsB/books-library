@@ -1,6 +1,6 @@
 package com.kodilla.bookslibrary.customer;
 
-import com.kodilla.bookslibrary.exceptions.CustomerNotFoundException;
+import com.kodilla.bookslibrary.exceptions.CustomerNotFound;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class CustomersController {
     private final CustomersMapper mapper;
 
     @GetMapping(value = "/{id}")
-    CustomersDto getCustomer(@PathVariable int id) throws CustomerNotFoundException {
+    CustomersDto getCustomer(@PathVariable int id) throws CustomerNotFound {
         return mapper.convertToCustomerDto(service.getCustomerById(id));
     }
 
@@ -28,12 +28,12 @@ public class CustomersController {
     void createCustomer() {}
 
     @PutMapping(value = "/{id}")
-    void updateCustomer(@PathVariable int id, @RequestBody CustomersDto customersDto) throws CustomerNotFoundException {
+    void updateCustomer(@PathVariable int id, @RequestBody CustomersDto customersDto) throws CustomerNotFound {
         service.updateCustomer(id, mapper.convertToCustomer(customersDto));
     }
 
     @DeleteMapping(value = "/{id}")
-    void deleteCustomer(@PathVariable int id) {
+    void deleteCustomer(@PathVariable int id) throws CustomerNotFound {
         service.deleteCustomer(id);
     }
 }

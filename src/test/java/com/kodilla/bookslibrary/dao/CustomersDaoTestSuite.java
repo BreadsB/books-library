@@ -25,7 +25,7 @@ public class CustomersDaoTestSuite {
     private static final LocalDate REGISTER_DATE = LocalDate.of(1990,2,6);
 
     @Test
-    void testCustomersDao() {
+    void testCreateNewCustomer() {
         Customers customer1 = new Customers(1, "Mike", "Littleson", REGISTER_DATE, new ArrayList<Rents>());
 
         customersDao.save(customer1);
@@ -34,5 +34,32 @@ public class CustomersDaoTestSuite {
         Assertions.assertTrue(findCustomer.isPresent());
 
         customersDao.deleteById(id);
+    }
+
+    @Test
+    void testUpdateCustomer() {
+        Customers customer1 = new Customers(1, "Mike", "Littleson", REGISTER_DATE, new ArrayList<Rents>());
+        customersDao.save(customer1);
+
+        Customers customerUpdate = new Customers(1, "Mike", "Brownson", LocalDate.now(), new ArrayList<Rents>());
+        customersDao.save(customerUpdate);
+        Optional<Customers> result = customersDao.findById(customerUpdate.getId());
+
+        Assertions.assertTrue(result.isPresent());
+        Assertions.assertEquals("Brownson", result.get().getLastname());
+    }
+
+    @Test
+    void testFindAllCustomers() {
+        Customers customer1 = new Customers(1, "Mike", "Littleson", REGISTER_DATE, new ArrayList<Rents>());
+        Customers customer2 = new Customers(2, "Mike", "Littleson", REGISTER_DATE, new ArrayList<Rents>());
+        Customers customer3 = new Customers(3, "Mike", "Littleson", REGISTER_DATE, new ArrayList<Rents>());
+
+        customersDao.save(customer1);
+        customersDao.save(customer2);
+        customersDao.save(customer3);
+
+        long result = customersDao.count();
+        Assertions.assertEquals(3, result);
     }
 }

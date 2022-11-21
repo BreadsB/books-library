@@ -1,6 +1,6 @@
 package com.kodilla.bookslibrary.customer;
 
-import com.kodilla.bookslibrary.exceptions.CustomerNotFoundException;
+import com.kodilla.bookslibrary.exceptions.CustomerNotFound;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +12,8 @@ public class CustomersService {
 
     private final CustomersDao customersDao;
 
-    public Customers getCustomerById(int id) throws CustomerNotFoundException {
-        return customersDao.findById(id).orElseThrow(CustomerNotFoundException::new);
+    public Customers getCustomerById(int id) throws CustomerNotFound {
+        return customersDao.findById(id).orElseThrow(CustomerNotFound::new);
     }
 
     public List<Customers> getAllCustomers() {
@@ -24,8 +24,8 @@ public class CustomersService {
         customersDao.save(customer);
     }
 
-    public void updateCustomer(int id, Customers customerDetails) throws CustomerNotFoundException {
-        Customers customer = customersDao.findById(id).orElseThrow(CustomerNotFoundException::new);
+    public void updateCustomer(int id, Customers customerDetails) throws CustomerNotFound {
+        Customers customer = customersDao.findById(id).orElseThrow(CustomerNotFound::new);
         customer.setFirstname(customerDetails.getFirstname());
         customer.setLastname(customerDetails.getLastname());
         customer.setRegisterdate(customerDetails.getRegisterdate());

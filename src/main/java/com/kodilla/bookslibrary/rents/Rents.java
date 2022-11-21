@@ -3,75 +3,39 @@ package com.kodilla.bookslibrary.rents;
 import com.kodilla.bookslibrary.bookposition.BookPosition;
 import com.kodilla.bookslibrary.customer.Customers;
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "RENTS")
 public class Rents {
-
-    private int id;
-    private LocalDate rentDate;
-    private LocalDate returnDate;
-
-    private Customers customers;
-    private BookPosition bookPosition;
-
-    public Rents(LocalDate rentDate, LocalDate returnDate) {
-        this.rentDate = rentDate;
-        this.returnDate = returnDate;
-    }
-
-    public Rents() {}
 
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "ID", unique = true)
-    public int getId() {
-        return id;
-    }
-
-    private void setId(int id) {
-        this.id = id;
-    }
+    private int id;
 
     @Column(name = "RENT_DATE")
-    public LocalDate getRentDate() {
-        return rentDate;
-    }
-
-    private void setRentDate(LocalDate rentDate) {
-        this.rentDate = rentDate;
-    }
+    private LocalDate rentDate;
 
     @Column(name = "RETURN_DATE")
-    public LocalDate getReturnDate() {
-        return returnDate;
-    }
+    private LocalDate returnDate;
 
-    private void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    @ManyToOne(cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
-    public Customers getCustomers() {
-        return customers;
-    }
+    private Customers customers;
 
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "BOOKPOSITION_ID")
-    public BookPosition getBookPosition() {
-        return bookPosition;
-    }
-
-    public void setBookPosition(BookPosition bookPosition) {
-        this.bookPosition = bookPosition;
-    }
+    private BookPosition bookPosition;
 }
