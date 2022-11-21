@@ -22,4 +22,6 @@ public interface BookPositionDao extends CrudRepository<BookPosition, Integer> {
 
     @Override
     List<BookPosition> findAll();
+
+
 }

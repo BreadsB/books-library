@@ -55,4 +55,19 @@ public class BookPositionDaoTestSuite {
         List<BookPosition> bookPositionList = bookPositionDao.retrieveBooksByStatus(status);
         Assertions.assertEquals(1, bookPositionList.size());
     }
+
+    @Test
+    void testGetAllBookPositions() {
+        BookPosition bookPosition1 = new BookPosition();
+        BookPosition bookPosition2 = new BookPosition();
+        BookPosition bookPosition3 = new BookPosition();
+
+        bookPositionDao.save(bookPosition1);
+        bookPositionDao.save(bookPosition2);
+        bookPositionDao.save(bookPosition3);
+        int result = (int) bookPositionDao.count();
+
+        Assertions.assertNotEquals(0L, result);
+        System.out.println(bookPositionDao.findAll());
+    }
 }

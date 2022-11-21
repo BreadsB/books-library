@@ -26,6 +26,7 @@ public class CustomersMapper {
         converted.setFirstname(customers.getFirstname());
         converted.setLastname(customers.getLastname());
         converted.setRegisterDate(customers.getRegisterdate());
+        converted.setRents(customers.getRents());
 
         return converted;
     }

@@ -2,6 +2,7 @@ package com.kodilla.bookslibrary.dao;
 
 import com.kodilla.bookslibrary.customer.Customers;
 import com.kodilla.bookslibrary.customer.CustomersDao;
+import com.kodilla.bookslibrary.rents.Rents;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,6 +12,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -23,7 +26,7 @@ public class CustomersDaoTestSuite {
 
     @Test
     void testCustomersDao() {
-        Customers customer1 = new Customers("Mike", "Littleson", REGISTER_DATE);
+        Customers customer1 = new Customers(1, "Mike", "Littleson", REGISTER_DATE, new ArrayList<Rents>());
 
         customersDao.save(customer1);
         int id = customer1.getId();

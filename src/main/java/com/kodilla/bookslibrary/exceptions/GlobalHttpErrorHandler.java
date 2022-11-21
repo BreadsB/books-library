@@ -16,7 +16,7 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BookPositionNotFoundException.class)
     public ResponseEntity<Object> handleBookPositionNotFound(BookPositionNotFoundException exception) {
-        return new ResponseEntity<>("Book position with give id does not exist", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Book position with given id does not exist. Check your id.", HttpStatus.BAD_REQUEST);
     }
 
 

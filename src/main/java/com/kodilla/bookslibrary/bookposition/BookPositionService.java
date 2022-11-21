@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookPositionService {
 
-    BookPositionDao bookPositionDao;
+    private final BookPositionDao bookPositionDao;
 
     List<BookPosition> getAllBookPositions() {
         return bookPositionDao.findAll();
@@ -33,8 +33,6 @@ public class BookPositionService {
         BookPosition update = bookPositionDao.findById(id).orElseThrow(BookPositionNotFoundException::new);
 
         update.setStatus(bookPosition.getStatus());
-        update.setBooks(bookPosition.getBooks());
-        update.setRents(bookPosition.getRents());
 
         bookPositionDao.save(update);
     }

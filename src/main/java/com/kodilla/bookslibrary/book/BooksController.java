@@ -1,8 +1,6 @@
 package com.kodilla.bookslibrary.book;
 
 import com.kodilla.bookslibrary.exceptions.BookNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
